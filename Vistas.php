@@ -2,7 +2,35 @@
 
 require_once 'Conexion.php';
 
-function mostrarHeroes() {
+function catalogoEditoriales()
+{
+  //Arreglo
+  $editoriales = array();
+
+  $mysql = conexionMySql();
+  $sql = "SELECT *  FROM editorial";
+
+  if ($resultado = $mysql->query($sql))
+   {
+    while ($fila = $resultado->fetch_assoc())
+     {
+       $editoriales[$fila["IdEditorial"]] = $fila["Editorial"];
+    }
+
+    $resultado ->free();
+  }
+
+  $mysql->close();
+//  print_r($editoriales);
+  return $editoriales;
+}
+
+
+//catalogoEditoriales();
+
+function mostrarHeroes()
+{
+   $editorial = catalogoEditoriales();
     $mysql = conexionMySql();
     $sql = "Select * from heroes order by IdHeroe desc";
 
@@ -10,9 +38,9 @@ function mostrarHeroes() {
         if (mysqli_num_rows($resultado) == 0)
         {
           $respuesta = "<div class='error'><strong>Error: NO existen registros de Super"
-                     . "Héroes, la Base de Datos esta vacía.</strong></div>";  
+                     . "Héroes, la Base de Datos esta vacía.</strong></div>";
         }
-        else            
+        else
             {
             $tabla = "<table id='tablaHeroes' class='tabla'>";
             $tabla .= "<thead>";
@@ -33,7 +61,7 @@ function mostrarHeroes() {
                 $tabla .= "<td><h2>" . $fila["Nombre"] . "<h2></td>";
                 $tabla .= "<td><img src='Img/". $fila["Imagen"] ."'alt='Kickass'/></td>";
                 $tabla .= "<td><p>" . $fila["Descripcion"] . "</p></td>";
-                $tabla .= "<td><h3>" . $fila["Editorial"] . "</h3></td>";
+                $tabla .= "<td><h3>".$editorial[$fila["Editorial"]]."</h3></td>";
                 $tabla .= "<td>Botón Editar.</td>";
                 $tabla .= "<td>Botón Eliminar.</td>";
                 $tabla .= "</tr>";
@@ -44,8 +72,8 @@ function mostrarHeroes() {
 
             $respuesta = $tabla;
         }
-    } 
-    else 
+    }
+    else
         {
         $respuesta = "<div class='error'><strong>Error: No se ejecuto la consulta a la "
                 . "   Base de Datos</strong></div>";
