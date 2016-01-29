@@ -17,11 +17,13 @@ function enviarDatos()
   {
     if (ajax.status == OK)
      {
-
+         console.log(ajax);
+         alert("Emilio");
      }
      else
      {
-
+          console.log(ajax);
+         alert("Noooooo");
      }
   }
    else
@@ -47,6 +49,10 @@ function ejecutarAJAX(datos)
   ajax = objetoAJAX();
   //dectecta los cambio de estado:
   ajax.onreadystatechange = enviarDatos;
+  ajax.open("POST","Controlador.php");
+   //https://es.wikipedia.org/wiki/Multipurpose_Internet_Mail_Extensions
+  ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+  ajax.send(datos);
 }
 
 function altaHeroe(evento)
@@ -56,6 +62,7 @@ function altaHeroe(evento)
   //alert("Funciona");
   var datos = "transaccion=alta";
   ejecutarAJAX(datos);
+ 
 }
 
 function alCargarDocumento()

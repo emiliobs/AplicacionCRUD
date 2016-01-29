@@ -21,6 +21,17 @@ img
     width: 15%;
 }
 
+#cabecera,#contenido,#precarga,#respuesta,.tabla td, .tabla th
+{
+    padding: 1em;
+}
+
+#contenido
+{
+    background-color: white;
+    width: 80%;
+}
+
 #contenido
 {
     background: white;
@@ -38,6 +49,11 @@ img
     color: #ec673a;
 }
 
+#precarga,#respuesta
+{
+    display: none;
+}
+
 .error,.exito
 {
     background-color: red;
@@ -48,4 +64,63 @@ img
 .exito
 {
     background-color:  green;
+}
+
+.formulario, .tabla
+{
+    text-align: left;
+}
+
+.formulario div 
+{
+    margin: 1em auto
+}
+
+.formulario legend
+{
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.tabla
+{
+    
+    margin: auto;
+    width: 90%;
+}
+
+.tabla a 
+{
+    color: #eee;
+}
+
+.tabla a:hover
+{
+    color: #292623;
+}
+
+.tabla img
+{
+    max-width: 200px;
+}
+
+.tabla td
+{
+    vertical-align:top;
+}
+
+.tabla th 
+{
+    background-color: #292623;
+    color: #eee;
+}
+
+.tabla tr:nth-child(odd)
+{
+    background-color:  #ec673a;
+}
+
+.tabla tr:nth-child(even)
+{
+    background-color:  #1c5f81;
 }
